@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}BloodBridge: connect blood donors with people who need them{% endblock %}</title>
+<meta name="description" content="BloodBridge is a small community site that connects volunteer blood donors with people who need blood.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>{{ CSS|safe }}</style></head><body>
+<header><a class="brand" href="/"><span class="drop"></span>BloodBridge</a>
+<nav><a href="/donate">Become a donor</a><a href="/request">Request blood</a></nav></header>
+<main>{% block body %}{% endblock %}</main>
+<footer>BloodBridge is a volunteer community project, not a blood bank or a medical service. In an emergency call 112 or go to the nearest hospital blood bank.
+<a href="/privacy">Privacy</a>{% if CONTACT %} · <a href="mailto:{{ CONTACT }}">{{ CONTACT }}</a>{% endif %}</footer></body></html>

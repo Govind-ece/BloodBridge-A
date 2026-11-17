@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Become a donor · BloodBridge{% endblock %}{% block body %}
+<div class="card"><h1 style="font-size:40px">Become a donor</h1><p class="note">Your number is never shown on the site. Only the BloodBridge team sees it, to connect you with someone who needs your blood group.</p>
+{% if err %}<p class="err" role="alert">{{ err }}</p>{% endif %}
+<form method="post"><input type="hidden" name="csrf" value="{{ csrf() }}">
+<input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label>Full name<input name="name" maxlength="60" value="{{ f.name }}" required></label>
+<label>Age<input name="age" type="number" min="18" max="65" value="{{ f.age }}" required></label>
+<label>Blood group<select name="bgroup">{% for g in GROUPS %}<option{{ ' selected' if f.bgroup==g }}>{{ g }}</option>{% endfor %}</select></label>
+<label>City<input name="city" maxlength="40" value="{{ f.city }}" required></label>
+<label>Mobile number<input name="phone" inputmode="tel" value="{{ f.phone }}" required></label>
+<label class="chk"><input type="checkbox" name="eligible">I am 18 to 65, weigh at least 45 kg and am in good health. I understand a doctor decides at the time of donation.</label>
+<label class="chk"><input type="checkbox" name="consent">I agree that BloodBridge may store my details and call me about requests. I can ask to be deleted any time. <a href="/privacy">Privacy</a></label>
+<button>Sign me up</button></form></div>{% endblock %}

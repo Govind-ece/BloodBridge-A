@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Privacy · BloodBridge{% endblock %}{% block body %}<div class="card"><h1 style="font-size:40px">Privacy</h1>
+<p>We collect only what is needed to connect donors and people in need: name, age, blood group, city and mobile number, plus request details.</p>
+<p>The public pages show only totals by blood group and city. Phone numbers are visible to the BloodBridge team, and a requester’s number may be shared with a matching donor.</p>
+<p>We do not sell or advertise with your data. To be deleted, {% if CONTACT %}email <a href="mailto:{{ CONTACT }}">{{ CONTACT }}</a>{% else %}contact the site owner{% endif %} and we will remove your record.</p>
+<p>BloodBridge is a volunteer project, not a medical service. Eligibility and safety are decided by a licensed blood bank or doctor.</p></div>{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Admin · BloodBridge{% endblock %}{% block body %}
+<div class="card"><h2>Requests ({{ reqs|length }})</h2>
+{% for r in reqs %}<div style="padding:14px 0;border-bottom:1px solid var(--line);{{ 'opacity:.5' if r.done }}">
+<b>{{ r.contact_name }}</b> <span class="g">{{ r.bgroup }}</span> {{ r.units }} unit(s) · {{ r.city }}{% if r.urgent %} · <b style="color:var(--red)">URGENT</b>{% endif %} · <a href="tel:{{ r.phone }}">{{ r.phone }}</a>
+{% if r.note %}<div class="note">{{ r.note }}</div>{% endif %}
+<div class="note">{% if match[r.id] %}Compatible donors: {% for d in match[r.id] %}{{ d.name }} ({{ d.bgroup }}, {{ d.city }}, <a href="tel:{{ d.phone }}">{{ d.phone }}</a>){{ '; ' if not loop.last }}{% endfor %}{% else %}No compatible donors yet.{% endif %}</div>
+<form method="post" action="/admin/request/{{ r.id }}/done"><input type="hidden" name="csrf" value="{{ csrf() }}"><button class="alt">{{ 'Reopen' if r.done else 'Mark fulfilled' }}</button></form>
+<form method="post" action="/admin/request/{{ r.id }}/delete"><input type="hidden" name="csrf" value="{{ csrf() }}"><button class="alt">Delete</button></form></div>
+{% else %}<p class="note">No requests yet.</p>{% endfor %}</div>
+<div class="card"><h2>Donors ({{ donors|length }})</h2><div class="wrap"><table><thead><tr><th>Name<th>Age<th>Group<th>City<th>Phone<th>Available<th></thead>
+{% for d in donors %}<tr><td>{{ d.name }}<td>{{ d.age }}<td><span class="g">{{ d.bgroup }}</span><td>{{ d.city }}<td><a href="tel:{{ d.phone }}">{{ d.phone }}</a><td>{{ 'Yes' if d.avail else 'No' }}
+<td><form method="post" action="/admin/donor/{{ d.id }}/toggle"><input type="hidden" name="csrf" value="{{ csrf() }}"><button class="alt">Toggle</button></form>
+<form method="post" action="/admin/donor/{{ d.id }}/delete"><input type="hidden" name="csrf" value="{{ csrf() }}"><button class="alt">Delete</button></form>{% endfor %}</table></div>
+<form method="post" action="/admin/logout" style="margin-top:16px"><input type="hidden" name="csrf" value="{{ csrf() }}"><button class="alt">Log out</button></form></div>{% endblock %}

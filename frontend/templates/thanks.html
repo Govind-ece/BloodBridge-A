@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block body %}<div class="card"><h1 style="font-size:40px">Thank you.</h1>
+{% if kind=='donor' %}<p>You are on the list. We will call you if someone with a compatible need appears in your city. Donations always happen at a licensed blood bank or hospital.</p>
+{% else %}<p>Your request is in. We will try to connect you with a compatible donor by phone. If this is an emergency, also call 112 or contact the nearest hospital blood bank now.</p>{% endif %}
+<a class="btn" href="/">Back home</a></div>{% endblock %}

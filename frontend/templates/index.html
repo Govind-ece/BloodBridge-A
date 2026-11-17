@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block body %}
+<section class="hero"><h1>Every drop needs a bridge.</h1>
+<p>BloodBridge connects volunteer donors with people who need blood, starting small and starting local. Sign up in a minute.</p>
+<a class="btn" href="/donate">Become a donor</a> <a class="btn alt" href="/request">Request blood</a></section>
+<div class="card"><h2>How it works</h2><div class="steps">
+<div><b>1</b><p>Donors sign up with their blood group and city.</p></div>
+<div><b>2</b><p>Someone in need posts a request.</p></div>
+<div><b>3</b><p>We check compatible donors, same city first, and connect you by phone.</p></div></div></div>
+<div class="card"><h2>{{ total }} donor{{ '' if total==1 else 's' }} ready · {{ open_r }} open request{{ '' if open_r==1 else 's' }}</h2>
+<div class="tiles">{% for g in GROUPS %}<div class="tile"><span class="g">{{ g }}</span><strong>{{ by.get(g,0) }}</strong><span class="note">available</span></div>{% endfor %}</div>
+{% if cities %}<p class="note">Top cities: {% for c in cities %}{{ c.city }} ({{ c.n }}){{ ', ' if not loop.last }}{% endfor %}</p>{% endif %}</div>
+{% endblock %}
